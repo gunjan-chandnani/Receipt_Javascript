@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Your Customized T-Shirt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .form-section h3 {
+      margin-bottom: 20px;
+      color: #666;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input[type="text"], input[type="email"], input[type="number"], input[type="date"], textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    input[type="file"] {
+      margin-top: 10px;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    input[type="submit"], input[type="reset"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    input[type="reset"] {
+      background-color: #f44336;
+    }
+
+    input[type="submit"]:hover, input[type="reset"]:hover {
+      opacity: 0.9;
+    }
+
+    .receipt {
+      border: 1px solid #000;
+      padding: 20px;
+      width: 100%;
+      margin-top: 20px;
+      background-color: #fff;
+    }
+
+    .receipt h3 {
+      text-align: center;
+      color: #333;
+    }
+
+    .receipt p {
+      margin: 10px 0;
+    }
+
+    #orderSuccess {
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h2>Order Your Customized T-Shirt</h2>
+
+  <div class="container">
+    <form onsubmit="processOrder(event)">
+      <!-- T-Shirt Details Section -->
+      <div class="form-section">
+        <h3>T-Shirt Details</h3>
+
+        <div class="form-group">
+          <label for="tagline">Tagline on the Shirt:</label>
+          <textarea id="tagline" name="tagline" maxlength="50" required placeholder="Enter your tagline here"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="color">Color:</label>
+          <select id="color" name="color" required>
+            <option value="" disabled selected>Select a color</option>
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="Green">Green</option>
+            <option value="Black">Black</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="size">Size:</label>
+          <select id="size" name="size" required>
+            <option value="" disabled selected>Select a size</option>
+            <option value="S">Small</option>
+            <option value="M">Medium</option>
+            <option value="L">Large</option>
+            <option value="XL">X-Large</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="quantity">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" value="1" min="1" max="50" required>
+        </div>
+
+        <div class="form-group">
+          <label for="deliveryDate">Delivery Date:</label>
+          <input type="date" id="deliveryDate" name="deliveryDate" required>
+        </div>
+      </div>
+
+      <!-- Design Preferences Section -->
+      <div class="form-section">
+        <h3>Design Preferences</h3>
+
+        <div class="form-group">
+          <label for="designSize">Design Size (%):</label>
+          <input type="range" id="designSize" name="designSize" min="10" max="100" value="50">
+        </div>
+
+        <div class="form-group">
+          <label for="customDesign">Upload Custom Design:</label>
+          <input type="file" id="customDesign" name="customDesign">
+        </div>
+
+        <div class="form-group">
+          <label>Print Type:</label>
+          <input type="radio" id="digital" name="printType" value="Digital Print" checked>
+          <label for="digital">Digital Print</label>
+          <input type="radio" id="screen" name="printType" value="Screen Print">
+          <label for="screen">Screen Print</label>
+          <input type="radio" id="handloom" name="printType" value="Handloom">
+          <label for="handloom">Handloom</label>
+        </div>
+      </div>
+
+      <!-- Delivery Details Section -->
+      <div class="form-section">
+        <h3>Delivery Details</h3>
+
+        <div class="form-group">
+          <label for="recipient">Recipient's Name:</label>
+          <input type="text" id="recipient" name="recipient" placeholder="Full Name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <textarea id="address" name="address" required placeholder="Street, City, State, Zip"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required placeholder="gunjan@gmail.com">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="text" id="phone" name="phone" required placeholder="10-digit number">
+        </div>
+      </div>
+
+      <!-- Additional Comments Section -->
+       
+      <div class="form-section">
+        <h3>Additional Comments</h3>
+        <label for="comments">Any additional comments or special instructions:</label>
+        <textarea id="comments" name="comments" placeholder="Enter your comments here"></textarea>
+      </div>
+
+      <input type="submit" value="Submit Order">
+      <input type="reset" value="Reset Form">
+    </form>
+
+    <div id="orderSuccess"></div>
+    <div id="receipt"></div>
+  </div>
+
+  <script>
+    function validateForm() {
+      var phone = document.getElementById("phone").value;
+      var email = document.getElementById("email").value;
+      var quantity = document.getElementById("quantity").value;
+      var deliveryDate = document.getElementById("deliveryDate").value;
+      var today = new Date();
+      var selectedDate = new Date(deliveryDate);
+
+      // Validate phone number
+      if (!/^\d{10}$/.test(phone)) {
+        alert("Phone number must be exactly 10 digits.");
+        return false;
+      }
+
+      // Validate email format
+      var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
+
+      // Validate quantity (must be between 1 and 50)
+      if (isNaN(quantity) || quantity < 1 || quantity > 50) {
+        alert("Quantity must be between 1 and 50.");
+        return false;
+      }
+
+      // Validate delivery date (must be today or later)
+      if (selectedDate < today.setHours(0,0,0,0)) {
+        alert("Delivery date cannot be in the past.");
+        return false;
+      }
+
+      return true;
+    }
+
+    function processOrder(event) {
+      event.preventDefault();
+
+      if (validateForm()) {
+        var tagline = document.getElementById("tagline").value;
+        var color = document.getElementById("color").value;
+        var size = document.getElementById("size").value;
+        var quantity = document.getElementById("quantity").value;
+        var deliveryDate = document.getElementById("deliveryDate").value;
+        var designSize = document.getElementById("designSize").value;
+        var printType = document.querySelector('input[name="printType"]:checked').value;
+        var recipient = document.getElementById("recipient").value;
+        var address = document.getElementById("address").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+        var comments = document.getElementById("comments").value;
+        var date = new Date().toLocaleDateString();
+
+        var receipt = `
+          <div class="receipt">
+            <h3>Customized T-Shirt Order Receipt</h3>
+            <p><strong>Tagline:</strong> "${tagline}"</p>
+            <p><strong>Color:</strong> ${color}</p>
+            <p><strong>Size:</strong> ${size}</p>
+            <p><strong>Quantity:</strong> ${quantity}</p>
+            <p><strong>Delivery Date:</strong> ${deliveryDate}</p>
+            <p><strong>Design Size:</strong> ${designSize}%</p>
+            <p><strong>Print Type:</strong> ${printType}</p>
+            <p><strong>Recipient:</strong> ${recipient}</p>
+            <p><strong>Address:</strong> ${address}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Phone:</strong> ${phone}</p>
+            <p><strong>Additional Comments:</strong> ${comments}</p>
+            <p><strong>Order Date:</strong> ${date}</p>
+            <hr>
+            <p>Your order has been successfully received. Thank you for your purchase!</p>
+          </div>
+        `;
+
+        document.getElementById("receipt").innerHTML = receipt;
+        document.getElementById("orderSuccess").textContent = "Order submitted successfully!";
+      }
+    }
+  </script>
+
+</body>
+</html>
